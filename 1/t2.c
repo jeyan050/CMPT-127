@@ -13,5 +13,5 @@ int main( void )
 	int doubleBits = sizeof(double)  * CHAR_BIT;
 	int longDoubleBits = sizeof(long double)  * CHAR_BIT;
 
-	printf("%d %d %d %d %d %d %d %d %d\n", charBits, unSignCharBits, intBits, unSignIntBits, longBits, unSignLongBits, floatBits, doubleBits, longDoubleBits);
+	printf("%u %u %u %u %u %u %u %u %u\n", charBits, unSignCharBits, intBits, unSignIntBits, longBits, unSignLongBits, floatBits, doubleBits, longDoubleBits);
 }

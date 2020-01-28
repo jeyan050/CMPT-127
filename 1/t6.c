@@ -3,17 +3,14 @@
 
 int main(){
 	int a = 1;
-	double lowest;
-	double highest;
+	double lowest = 100000;
+	double highest = -100000;
 	double total = 0;
 	int amountNums = 0;
 	while (a == 1){
 		double num = 0;
 		double input = scanf( "%le", &num);
 		if (input != EOF){
-			if (lowest == 0){
-				lowest = num;
-			}
 			if (num < lowest){
 				lowest = num;
 			}

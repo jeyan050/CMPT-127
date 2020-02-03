@@ -22,7 +22,7 @@ int main(){
   if (l != 1){
     for (int i = 0; i < w; i++){
       printf("#");
+    }
     printf("\n");
-  }
   }
 }

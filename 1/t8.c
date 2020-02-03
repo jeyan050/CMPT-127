@@ -19,8 +19,10 @@ int main(){
       printf("#\n");
     }
   }
-  for (int i = 0; i < w; i++){
-    printf("#");
+  if (l != 1){
+    for (int i = 0; i < w; i++){
+      printf("#");
+    printf("\n");
   }
-  printf("\n");
+  }
 }

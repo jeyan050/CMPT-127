@@ -9,21 +9,22 @@ int main(){
   int dx = w/2;
   int dz = h;
   
-  int j = h - 1;
   // FIRST # and SPACES
-  for (int level = h; level > 0; level--){ // 4 3 2 1
-    double m = dx * level;
-    int x = ceil(m / dz);
-    for (int a = x; a > 1; a--){
+  for (int level = h-1; level >= 0; level--){
+    int m = dx * (level);
+    int x = round(m / dz);
+    for (int a = x; a > 0; a--){
       printf(" ");      
     }
-    printf("#");   
-  // DOTS AND LEFTOVER HASHES
-    int left = floor( j * (w/(2.0*h)) ); // 0 1/2 1 3/2   -- 0 0 1 1
-    int right = ceil( (w-1) - (j *(w/(2.0*h))) ); // 3 3 2 2
-    int differ = right - left; // 3 3 1 1
+    printf("#");
 
-    if (level == 1 || level == h){
+    int j = level;
+
+    int left = floor( j * (w/(2.0*h)) );
+    int right = ceil( (w-1) - (j *(w/(2.0*h))) ); 
+    int differ = right - left; 
+
+    if (level == 0 || level == h-1){
       for (int hash = 0; hash < differ; hash++){
         printf("#");
       }
@@ -34,6 +35,6 @@ int main(){
       }
       printf("#\n");
     } 
-    j--;        
+    j--;                
   }
 }

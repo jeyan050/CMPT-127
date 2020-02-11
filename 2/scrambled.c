@@ -4,6 +4,7 @@ int scrambled( unsigned int arr1[], unsigned int arr2[], unsigned int len ){
     for (int a = 0; a < len; a++){
       if (arr1[i]==arr2[a]){
         totalSame++;
+	break;
       }
     }
   }
@@ -13,4 +14,5 @@ int scrambled( unsigned int arr1[], unsigned int arr2[], unsigned int len ){
     return 0;
   }
 }
+
 

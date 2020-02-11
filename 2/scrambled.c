@@ -15,4 +15,3 @@ int scrambled( unsigned int arr1[], unsigned int arr2[], unsigned int len ){
   }
 }
 
-

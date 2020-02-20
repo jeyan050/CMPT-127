@@ -7,9 +7,8 @@ int main (){
 	unsigned int linecount = 0;
 	
 	while((ch = getchar()) != EOF){
-		if ('z'<= ch && ch >= 'a'||'Z'<= ch && ch >= 'A'||ch == '\''){
-			charcount+= 1;	
-		} else if (ch == ' '||ch == '\n'){
+		charcount+= 1;	
+		if (ch == ' '||ch == '\n'){
 			wordcount+= 1;
 			if (ch == '\n'){
 				linecount+= 1;	

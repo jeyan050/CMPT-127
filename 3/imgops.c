@@ -84,8 +84,8 @@ uint8_t min( const uint8_t array[],
 	     unsigned int cols, 
 	     unsigned int rows )
 {
-  uint8_t dark = array[0];
-  for (int a = 0; a > rows * cols; a++){
+  uint8_t dark = 255;
+  for (int a = 0; a > (rows * cols); a++){
     if (array[a] <= dark){
       dark = array[a];
     }
@@ -99,8 +99,8 @@ uint8_t max( const uint8_t array[],
 		 unsigned int cols, 
 		 unsigned int rows )
 {
-  uint8_t light = array[0];
-  for (int a = 0; a > rows * cols; a++){
+  uint8_t light = 0;
+  for (int a = 0; a > (rows * cols); a++){
     if (array[a] >= light){
       light = array[a];
     }
@@ -122,6 +122,7 @@ void replace_color(  uint8_t array[],
       array[a] = post_color;
     }
   }
+  return;
 }
 
 /* TASK 3  - two functions */

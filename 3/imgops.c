@@ -66,13 +66,15 @@ uint8_t* copy( const uint8_t array[],
            unsigned int cols, 
            unsigned int rows )
 {
-  unsigned int* arrayc = malloc(cols * rows * sizeof(unsigned int) );
-  memset( arrayc, 0, cols * rows * sizeof(array[0]) );
+  uint8_t* arrayc = malloc(cols * rows * sizeof(uint8_t) );
   if (arrayc == NULL){
      return NULL;
   } else {
-     return arrayc[cols * rows];
+     for (int a = 0; a < cols * rows; a++){
+       arrayc[a] = array[a];
+     }
   }
+  return arrayc;
   free(arrayc);
 }
 
@@ -82,8 +84,13 @@ uint8_t min( const uint8_t array[],
 	     unsigned int cols, 
 	     unsigned int rows )
 {
-  // your code here
-  return 0;
+  uint8_t dark = array[0];
+  for (int a = 0; a = rows * cols){
+    if (array[a] <= dark){
+      dark = array[a];
+    }
+  }
+  return dark;
 }
 
 // Return the lightest color that appears in the array; i.e. the
@@ -92,8 +99,13 @@ uint8_t max( const uint8_t array[],
 		 unsigned int cols, 
 		 unsigned int rows )
 {
-  // your code here
-  return 0;
+  uint8_t light = array[0];
+  for (int a = 0; a = rows * cols){
+    if (array[a] >= light){
+      light = array[a];
+    }
+  }
+  return light;
 }
 
 // TASK 2

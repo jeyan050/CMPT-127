@@ -85,7 +85,7 @@ uint8_t min( const uint8_t array[],
 	     unsigned int rows )
 {
   uint8_t dark = array[0];
-  for (int a = 0; a = rows * cols){
+  for (int a = 0; a = rows * cols; a++){
     if (array[a] <= dark){
       dark = array[a];
     }
@@ -100,7 +100,7 @@ uint8_t max( const uint8_t array[],
 		 unsigned int rows )
 {
   uint8_t light = array[0];
-  for (int a = 0; a = rows * cols){
+  for (int a = 0; a = rows * cols; a++){
     if (array[a] >= light){
       light = array[a];
     }

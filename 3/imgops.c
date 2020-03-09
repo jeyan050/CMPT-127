@@ -320,8 +320,15 @@ void region_set( uint8_t array[],
          unsigned int right,
          unsigned int bottom,
          uint8_t color )
-{
-    // your code here
+{    
+    if (right != left && top != bottom){
+      unsigned int p1 = left * top;
+      unsigned int p2 = right * bottom;
+      
+      for (int a = p1; a < p2; a++){
+        array[a] = color;
+      }
+    }
 }
 
 /* TASK 10 */

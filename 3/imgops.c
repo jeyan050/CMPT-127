@@ -222,8 +222,14 @@ void scale_brightness( uint8_t array[],
             unsigned int rows,
             double scale_factor )
 {
+  int newColor = 0;
   for (int a = 0; a < cols * rows; a++){
-    array[a] = scale_factor * array[a];
+    newColor = round(scale_factor*array[a]);
+    if (newColor > 255){
+      array[a] = 255;
+    } else {
+      array[a] = newColor;
+    }
   }
 }
 
@@ -237,7 +243,15 @@ void normalize( uint8_t array[],
         unsigned int cols,
         unsigned int rows )
 {
-    // your code here
+    uint8_t dark = max(array, cols, rows);
+    uint8_t light = min(array, cols, rows);
+    
+    float newLight = light-dark;    
+    float factor = 255 / newLight;
+    
+    for(int a = 0; a < cols*rows; a++){
+      array[a] = (array[a] - dark) * factor;
+    }
 }
 
 /* TASK 8 */

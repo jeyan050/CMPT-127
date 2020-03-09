@@ -243,8 +243,8 @@ void normalize( uint8_t array[],
         unsigned int cols,
         unsigned int rows )
 {
-    uint8_t dark = max(array, cols, rows);
-    uint8_t light = min(array, cols, rows);
+    uint8_t light = max(array, cols, rows);
+    uint8_t dark = min(array, cols, rows);
     
     float newLight = light-dark;    
     float factor = 255 / newLight;

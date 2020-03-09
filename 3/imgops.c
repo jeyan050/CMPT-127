@@ -206,10 +206,8 @@ void invert( uint8_t array[],
          unsigned int cols, 
          unsigned int rows )
 {
-    uint8_t color = 0;
     for (int a = 0; a < cols * rows; a++){
-      color = 255 - array[a];
-      array[a] = color;
+      array[a] = 255 - array[a];
     }
 }
 

@@ -250,7 +250,7 @@ void normalize( uint8_t array[],
     float factor = 255 / newLight;
     
     for(int a = 0; a < cols*rows; a++){
-      array[a] = (array[a] - dark) * factor;
+      array[a] = (array[a] - dark) * factor+1;
     }
 }
 
@@ -266,8 +266,19 @@ uint8_t* half( const uint8_t array[],
 	       unsigned int cols,
 	       unsigned int rows )
 {
-  // your code here
-  return NULL;
+  uint8_t *ret = malloc((rows/2) * (cols/2)*sizeof(uint8_t));
+  
+  if (ret != NULL){
+    for (unsigned int y = 0; y < rows/2; y++)
+      for (unsigned int x = 0; x < cols/2; x++){
+        unsigned int total = 0;
+        for (unsigned int i = 2*y; i < 2*y+2; i++)
+          for (unsigned int j = 2*x; j < 2*x+2; j++)
+            total += array[i*cols + j];
+        ret[y*(cols/2) + x] = round(total/4.0);
+      }
+  }
+  return ret;
 }
 
 

@@ -137,15 +137,15 @@ void flip_horizontal( uint8_t array[],
   for (int i=0;i<rows;i++){
     if (cols%2==0){
       for(int j=0;j<cols/2;j++){
-        tmp=array[i*cols+j];
+        temp=array[i*cols+j];
         array[i*cols+j]=array[(i+1)*cols-(j+1)];
-        array[(i+1)*cols-(j+1)]=tmp;
+        array[(i+1)*cols-(j+1)]=temp;
       }      
     } else {
       for(int j=0;j<(cols-1)/2;j++){
-        tmp=array[i*cols+j];
+        temp=array[i*cols+j];
         array[i*cols+j]=array[(i+1)*cols-(j+1)];
-        array[(i+1)*cols-(j+1)]=tmp;
+        array[(i+1)*cols-(j+1)]=temp;
       }
     }
   }
@@ -206,7 +206,11 @@ void invert( uint8_t array[],
          unsigned int cols, 
          unsigned int rows )
 {
-    // your code here
+    uint8_t color = 0;
+    for (int a = 0; a < cols * rows; a++){
+      color = 255 - array[a];
+      array[a] = color;
+    }
 }
 
 /* TASK 6 */

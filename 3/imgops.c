@@ -246,11 +246,12 @@ void normalize( uint8_t array[],
     uint8_t light = max(array, cols, rows);
     uint8_t dark = min(array, cols, rows);
     
-    float newLight = light-dark;    
-    float factor = 255 / newLight;
+    float newLight = light-dark;  
+    float holder = 0;
     
     for(int a = 0; a < cols*rows; a++){
-      array[a] = round((array[a] - dark) * factor);
+      holder = 255*(array[a]-dark)/newLight;
+      array[a] = round(holder);
     }
 }
 
@@ -321,7 +322,7 @@ void region_set( uint8_t array[],
          unsigned int bottom,
          uint8_t color )
 {    
-    if (right != left && top != bottom){
+    if (right == left && top == bottom){
       return;
     }
     for (int x = 0; x < rows; x++)

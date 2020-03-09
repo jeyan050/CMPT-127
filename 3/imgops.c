@@ -250,7 +250,7 @@ void normalize( uint8_t array[],
     float factor = 255 / newLight;
     
     for(int a = 0; a < cols*rows; a++){
-      array[a] = (array[a] - dark) * factor;
+      array[a] = round((array[a] - dark) * factor);
     }
 }
 
@@ -323,12 +323,11 @@ void region_set( uint8_t array[],
 {    
     if (right != left && top != bottom){
       return;
-    } else {
-      for (int x = 0; x < rows; x++)
-        for (int y = 0; y < cols; y++){
-          if(x>=top && x<bottom && y>=left && y<right){
-				    array[(x*cols)+y]=color;
-			    }
+    }
+    for (int x = 0; x < rows; x++)
+      for (int y = 0; y < cols; y++){
+        if(x>=top && x<bottom && y>=left && y<right){
+          array[(x*cols)+y]=color;
         }
     }
 }
@@ -364,8 +363,22 @@ uint8_t* region_copy( const uint8_t array[],
               unsigned int right,
               unsigned int bottom )
 {
-    // your code here
-    return NULL;
+    uint8_t* newImage = malloc((right-left) * (bottom-top) * sizeof(uint8_t));
+    unsigned int newIPos = 0;
+    
+    if (left==right || top==bottom){
+      return NULL;
+    } else {
+      for (int x = 0; x < rows; x++)
+        for (int y = 0; y < cols; y++){
+          if (x>=top && x<bottom && y>=left && y<right){
+            newImage[newIPos] = array[(x*cols) + y];
+            newIPos++;
+          }
+        }
+    }
+    return newImage;
+    
 }
 
 

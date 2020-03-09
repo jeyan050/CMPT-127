@@ -250,7 +250,7 @@ void normalize( uint8_t array[],
     float factor = 255 / newLight;
     
     for(int a = 0; a < cols*rows; a++){
-      array[a] = (array[a] - dark) * factor+1;
+      array[a] = (array[a] - dark) * factor;
     }
 }
 

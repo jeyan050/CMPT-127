@@ -134,11 +134,19 @@ void flip_horizontal( uint8_t array[],
               unsigned int rows )
 {
   uint8_t temp = 0;
-  for (int i = 0; i < rows; i++ ){
-    for (int a = 0; a <= cols/2; a++){
-      temp = array[cols*i+a];
-      array[cols*i+a] = array[cols*i + (cols-a)];
-      array[cols*i + (cols-a)] = temp;
+  for (int i=0;i<rows;i++){
+    if (cols%2==0){
+      for(int j=0;j<cols/2;j++){
+        tmp=array[i*cols+j];
+        array[i*cols+j]=array[(i+1)*cols-(j+1)];
+        array[(i+1)*cols-(j+1)]=tmp;
+      }      
+    } else {
+      for(int j=0;j<(cols-1)/2;j++){
+        tmp=array[i*cols+j];
+        array[i*cols+j]=array[(i+1)*cols-(j+1)];
+        array[(i+1)*cols-(j+1)]=tmp;
+      }
     }
   }
 }
@@ -184,9 +192,7 @@ int locate_color(  const uint8_t array[],
         *y = a / cols;
         *x = a % cols;
         return 1;                      
-      } else {
-        return 0;      
-      }      
+      } 
     }
     return 0;
 }

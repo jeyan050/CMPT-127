@@ -171,7 +171,7 @@ int locate_color(  const uint8_t array[],
 		   unsigned int *x,
 		   unsigned int *y )
 {
-    // your code here
+    
     return 0;
 }
 

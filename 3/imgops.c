@@ -222,7 +222,9 @@ void scale_brightness( uint8_t array[],
             unsigned int rows,
             double scale_factor )
 {
-  // your code here
+  for (int a = 0; a < cols * rows; a++){
+    array[a] = scale_factor * array[a];
+  }
 }
 
 

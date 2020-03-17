@@ -76,6 +76,7 @@ intarr_t* intarr_copy( const intarr_t* ia ){
 	dup->len = ia->len;
 	dup->data=malloc(sizeof(int)*dup->len);
 	memcpy(dup->data, ia->data, ia->len*sizeof(int));
+  return dup;
 }
 
 

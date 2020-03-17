@@ -12,11 +12,12 @@
 // newly-allocated intarr_t.  If unsuccessful, returns a null pointer.
 intarr_t* intarr_create( unsigned int len ){
 	
-	intarr_t* newintarr = NULL;
-	newintarr = malloc(sizeof(intarr_t));
-	if ( newintarr != NULL){
-		newintarr->len = len;
+	intarr_t *newintarr = malloc(sizeof(intarr_t));
+	if ( newintarr == NULL){
+		return NULL;
 	}
+	newintarr->len = len;
+	newintarr->data = malloc(sizeof(int) * arr->len)
 	return newintarr;
 }
 

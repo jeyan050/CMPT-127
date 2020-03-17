@@ -29,6 +29,7 @@ void intarr_destroy( intarr_t* ia ){
 			free(ia);		
 		}	
 	}
+  return;
 }
 
 /* LAB 5 TASK 2 */

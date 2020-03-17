@@ -17,7 +17,7 @@ intarr_t* intarr_create( unsigned int len ){
 		return NULL;
 	}
 	newintarr->len = len;
-	newintarr->data = malloc(sizeof(int) * newintarr->len)
+	newintarr->data = malloc(sizeof(int) * newintarr->len);
 	return newintarr;
 }
 

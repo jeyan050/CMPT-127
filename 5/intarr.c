@@ -158,7 +158,24 @@ intarr_result_t intarr_pop( intarr_t* ia, int* i ){
 // If the allocation is successful, return INTARR_OK, otherwise 
 // return INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ){
-
+  if (ia == NULL)
+		return INTARR_BADARRAY;
+	int origLen, newData;
+	origLen = ia->len;
+	if (newlen >= 0){
+		*newData = realloc(ia->data,sizeof(int)*newlen);
+		ia->len = newlen;
+		ia->data = newData;
+		if(new_resize_data){
+			if(newlen>origLen){
+				for(int i = origLen; i < newlen; i++){
+					ia->data = 	0;
+				}			
+			}		
+		}
+		return INTARR_OK
+	}
+	return INTARR_BADALLOC;
 }
 
 /* LAB 5 TASK 8 */

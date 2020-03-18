@@ -173,7 +173,7 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ){
 				}			
 			}		
 		}
-		return INTARR_OK
+		return INTARR_OK;
 	}
 	return INTARR_BADALLOC;
 }

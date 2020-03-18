@@ -86,7 +86,23 @@ intarr_t* intarr_copy( const intarr_t* ia ){
 // for all valid i, then return INTARR_OK. Works in-place: contents of
 // ia are sorted on return. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_sort( intarr_t* ia ){
-
+  if(ia == NULL){
+		return INTARR_BADARRAY;	
+	}
+	int min, switchpos, tmp;
+	for (int i = 0; i < ia->len; i++){
+		min = ia->data[i];
+		for (int a = i; a < ia->len; a++){
+			if (ia->data[a] < min){
+				min = ia->data[a];	
+				switchpos = a;	
+			}		
+		}
+		tmp = ia->data[i];
+		ia->data[i] = min;
+		ia->data[switchpos] = tmp;
+	}
+	return INTARR_OK;
 }
 
 /* LAB 5 TASK 5 */

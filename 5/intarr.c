@@ -52,17 +52,12 @@ intarr_result_t intarr_set( intarr_t* ia, unsigned int index, int val ){
 // If index is valid and val is non-null, set *val to ia->data[index] and return
 // INTARR_OK. Otherwise do not modify *val and return
 // INTARR_BADINDEX. If ia is null, return INTARR_BADARRAY.
-intarr_result_t intarr_get( const intarr_t* ia, 
-							unsigned int index, 
-							int* val ){
+intarr_result_t intarr_get( const intarr_t* ia, unsigned int index, int* val ){
 	if (ia != NULL){
-		if (ia->len > index){
-			if (val != NULL){
-				ia->data[index] = *val;
+		if (ia->len > index && val != NULL){
+				*val = ia->data[index];
 				return INTARR_OK;		
 			}
-		}
-		return INTARR_BADINDEX;
 	} else {
 		return INTARR_BADARRAY;	
 	}

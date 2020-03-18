@@ -210,16 +210,17 @@ intarr_t* intarr_copy_subarray( intarr_t* ia, unsigned int first, unsigned int l
 		return NULL;	
 	}
 	int copyPos = 0;
+  int newLen;
 	intarr_t *copy = malloc(sizeof(intarr_t));
 	if (copy != NULL && first <= last){
 		newLen = last-first+1;
-		dup->len = newLen;
-		dup->data = malloc(sizeof(int)*newLen);
+		copy->len = newLen;
+		copy->data = malloc(sizeof(int)*newLen);
 		for (int i = first; i <= last; i++){
-			dup->data[copyPos] = ia->data[i];
+			copy->data[copyPos] = ia->data[i];
 			copyPos++;
 		}
-		return copyPos;
+		return copy;
 	}
 	return NULL;
 }

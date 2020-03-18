@@ -119,7 +119,7 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ){
 	for (int a = 0; a < ia->len; a++){
 		if (ia->data[a] == target && i != NULL){
 			*i = a;
-			return INTARR_OK
+			return INTARR_OK;
 		}
 	}
 	return INTARR_NOTFOUND;

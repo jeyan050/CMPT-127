@@ -53,15 +53,14 @@ intarr_result_t intarr_set( intarr_t* ia, unsigned int index, int val ){
 // INTARR_OK. Otherwise do not modify *val and return
 // INTARR_BADINDEX. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_get( const intarr_t* ia, unsigned int index, int* val ){
-	if (ia != NULL){
+	if (ia == NULL){
     return INTARR_BADARRAY;
+  } else if (index<ia->len && i != NULL){
+    *i = ia->data[index];
+    return INTARR_OK;
+  } else {
+    return INTARR_BADINDEX;
   }
-	if (ia->len > index && val != NULL){
-	  *val = ia->data[index];
-	  return INTARR_OK;		
-	} else {
-		return INTARR_BADINDEX;	
-	}
 }
 
 /* LAB 5 TASK 3 */

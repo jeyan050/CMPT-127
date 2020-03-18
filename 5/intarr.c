@@ -189,7 +189,7 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ){
 		if(newData){
 			if(newlen>origLen){
 				for(int i = origLen; i < newlen; i++){
-					ia->data = 	0;
+					ia->data[i] = 0;
 				}			
 			}		
 		}

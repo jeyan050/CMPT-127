@@ -38,6 +38,9 @@ void intarr_destroy( intarr_t* ia ){
 // INTARR_OK. Otherwise, leave the array unmodified and return
 // INTARR_BADINDEX. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_set( intarr_t* ia, unsigned int index, int val ){
+  if (ia == NULL){
+		return INTARR_BADINDEX;	
+	}			
 	if (ia->len > index){
 		ia->data[index] = val;
 		return INTARR_OK;

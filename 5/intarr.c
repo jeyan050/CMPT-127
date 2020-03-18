@@ -133,7 +133,11 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ){
 // successful, return INTARR_OK, otherwise return
 // INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_push( intarr_t* ia, int val ){
-
+  if (ia == NULL){
+		return INTARR_BADARRAY;	
+	}
+	intarr_resize(ia, ia->len+1);
+	ia->data[ia->len+1] = val;
 }
 
 // HINT: You will need to decrement len so that it always represents
@@ -143,7 +147,19 @@ intarr_result_t intarr_push( intarr_t* ia, int val ){
 // then return INTARR_OK. If the array is empty, leave *i unmodified
 // and return INTARR_BADINDEX. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_pop( intarr_t* ia, int* i ){
-
+  if (ia == NULL){
+		return INTARR_BADARRAY;
+	}
+	if (ia->len == 0 || ia->data[0] == 0){
+		return INTARR_BADINDEX;	
+	}
+	if (i != NULL){
+		*i = ia->data[ia->len-1];
+		ia->data[ia->len-1] = 0;
+		ia->len = ia->len-1;
+		return INTARR_OK;
+	}
+	return INTARR_BADARRAY;
 }
 
 /* LAB 5 TASK 7 */

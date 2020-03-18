@@ -206,5 +206,20 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ){
 // occurs, i.e. ia is null, 'first' or 'last' are out of bounds, 
 // 'last' < 'first', or memory allocation fails, return a null pointer.
 intarr_t* intarr_copy_subarray( intarr_t* ia, unsigned int first, unsigned int last ){
-                
+  if (ia == NULL || first > ia->len || last > ia->len || last < first){
+		return NULL;	
+	}
+	int copyPos = 0;
+	intarr_t *copy = malloc(sizeof(intarr_t));
+	if (copy != NULL && first <= last){
+		newLen = last-first+1;
+		dup->len = newLen;
+		dup->data = malloc(sizeof(int)*newLen);
+		for (int i = first; i <= last; i++){
+			dup->data[copyPos] = ia->data[i];
+			copyPos++;
+		}
+		return copyPos;
+	}
+	return NULL;
 }

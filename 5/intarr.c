@@ -55,7 +55,7 @@ intarr_result_t intarr_set( intarr_t* ia, unsigned int index, int val ){
 intarr_result_t intarr_get( const intarr_t* ia, unsigned int index, int* val ){
 	if (ia == NULL){
     return INTARR_BADARRAY;
-  } else if (index<ia->len && i != NULL){
+  } else if (index<ia->len && ia != NULL){
     *i = ia->data[index];
     return INTARR_OK;
   } else {

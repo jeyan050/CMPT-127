@@ -143,7 +143,8 @@ intarr_result_t intarr_push( intarr_t* ia, int val ){
 	}
   int* temp = malloc(((ia->len)+1)* sizeof(int));
   if (temp != NULL){
-	  for (int i = 0; i < ia->len; i++){
+    int i;
+	  for (i = 0; i < ia->len; i++){
       temp[i] = ia->data[i];
     }
     temp[i] = val;

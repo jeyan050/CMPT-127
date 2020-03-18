@@ -38,15 +38,20 @@ void intarr_destroy( intarr_t* ia ){
 // INTARR_OK. Otherwise, leave the array unmodified and return
 // INTARR_BADINDEX. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_set( intarr_t* ia, unsigned int index, int val ){
-  if (ia == NULL){
-		return INTARR_BADINDEX;	
-	}			
-	if ((ia->len)-1 > index && index >= 0){
-		ia->data[index] = val;
-		return INTARR_OK;
-	} else {
-		return INTARR_BADINDEX;	
+
+	if (ia==NULL){
+		return INTARR_BADARRAY;
 	}
+	//check if index is out of range, if so return badarray
+	if(index < 0 || index > ((ia->len)-1)){
+		return INTARR_BADINDEX;
+		
+	}
+	//index should be in range now
+	
+	ia->data[index]= val;
+	return INTARR_OK;
+
 }
 
 // If index is valid and val is non-null, set *val to ia->data[index] and return

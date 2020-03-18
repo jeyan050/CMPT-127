@@ -160,13 +160,13 @@ intarr_result_t intarr_pop( intarr_t* ia, int* i ){
 intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ){
   if (ia == NULL)
 		return INTARR_BADARRAY;
-	int origLen, newData;
+	int origLen;
 	origLen = ia->len;
 	if (newlen >= 0){
-		*newData = realloc(ia->data,sizeof(int)*newlen);
+		int *newData = realloc(ia->data,sizeof(int)*newlen);
 		ia->len = newlen;
 		ia->data = newData;
-		if(new_resize_data){
+		if(newData){
 			if(newlen>origLen){
 				for(int i = origLen; i < newlen; i++){
 					ia->data = 	0;

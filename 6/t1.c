@@ -48,7 +48,7 @@ intarr_t* intarr_load_binary( const char* filename ){
 	fread(&(newArray->len), sizeof(int), 1, f);
 	newArray->data = malloc((newArray->len) * sizeof(int));
 
-   	for (int x = 0 , x < newArray->len;x++){
+   	for (int x = 0 ; x < newArray->len;x++){
 		fread(&(newArray->data[x]), sizeof(int), 1, f);
     }
 	fclose(f);

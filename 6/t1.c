@@ -54,7 +54,7 @@ intarr_t* intarr_load_binary( const char* filename ){
     if(temp==newArray->len)
     {
         fclose(f);
-        return arr;
+        return newArray;
     }
     
     else{

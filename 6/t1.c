@@ -44,22 +44,13 @@ intarr_t* intarr_load_binary( const char* filename ){
 		return NULL;	
 	}
 	
-	intarr_t* newArray = malloc(sizeof(intarr_t));
-	
+	intarr_t * newArray = malloc(sizeof(intarr_t));
 	fread(&(newArray->len), sizeof(int), 1, f);
-
 	newArray->data = malloc((newArray->len) * sizeof(int));
 
-	int temp =fread(newArray->data, sizeof(int), newArray->len, f);
-    if(temp==newArray->len)
-    {
-        fclose(f);
-        return newArray;
+   	for (int x = 0 , x < newArray->len;x++){
+		fread(&(newArray->data[x]), sizeof(int), 1, f);
     }
-    
-    else{
-        fclose(f);
-        return NULL;
-        
-    } 
+	fclose(f);
+    return newArray; 
 }

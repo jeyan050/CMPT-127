@@ -39,18 +39,35 @@ int intarr_save_binary( intarr_t* ia, const char* filename ){
   Make sure you validate the parameter before you use it.
 */
 intarr_t* intarr_load_binary( const char* filename ){
-	FILE* f = fopen(filename,"r");
-	if (f == NULL){
-		return NULL;	
-	}
-	
-	intarr_t * newArray = malloc(sizeof(intarr_t));
-	fread(&(newArray->len), sizeof(int), 1, f);
-	newArray->data = malloc((newArray->len) * sizeof(int));
-
-   	for (int x = 0 ; x < newArray->len;x++){
-		fread(&(newArray->data[x]), sizeof(int), 1, f);
+		 if (filename==NULL)
+    {
+        return NULL;
     }
-	fclose(f);
-    return newArray; 
+    FILE *file = fopen( filename ,"r");
+    if (file==NULL)
+    {
+        return NULL;
+    }
+    fseek(file,0,SEEK_END);
+    int size = ftell(file)/sizeof(int);
+
+    fseek(file,0,SEEK_SET);
+
+    intarr_t *arr=malloc(sizeof(intarr_t));
+    arr->len=size;
+
+    arr->data=malloc(sizeof(int)*arr->len);
+
+    int rlen=fread(arr->data, sizeof(int), size, file);
+    if(rlen==arr->len)
+    {
+        fclose( file );
+        return arr;
+    }
+    
+    else{
+        fclose( file );
+        return NULL;
+        
+    }   
 }

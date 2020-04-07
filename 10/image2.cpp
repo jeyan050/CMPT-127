@@ -29,7 +29,7 @@ Image::~Image(){
 	if(pixels == NULL){
 		return 1;	
 	}
-	for (int i = 0; i < rows*cols; i++){
+	for (unsigned int i = 0; i < rows*cols; i++){
 		pixels[i] = fillcolour;	
 	}
 	return 0;
@@ -48,7 +48,7 @@ int Image::set_pixel( unsigned int x, unsigned int y, uint8_t colour ){
   /* Gets the colour of the pixel at (x,y) and stores at the address pointed to 
      by colourp. Returns 0 on success, else a non-zero error code. */
 int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colourp ){
-	if (x >= cols || y >= rows){
+	if (x >= cols || y >= rows || colourp == NULL){
 		return 1;	
 	}
 	*colourp = pixels[y*cols+x];
@@ -59,7 +59,7 @@ int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colourp ){
      loaded by load(). Returns 0 on success, else a non-zero error
      code. */
 int Image::save( const char* filename ){
-	if (filename == NULL || pixels == NULL || colourp == NULL){
+	if (filename == NULL || pixels == NULL){
 		return 1;	
 	}
 	FILE *f = fopen(filename, "w");

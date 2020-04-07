@@ -49,7 +49,6 @@ void point_array_reset( point_array_t* pa ){
 		pa->points = NULL;
 		free(pa);
 		pa = NULL;
-		return;
 	}
 }
 

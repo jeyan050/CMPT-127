@@ -57,7 +57,7 @@ int Image::set_pixel( unsigned int x, unsigned int y, uint8_t colour ){
 	if (x >= cols || y >= rows){
 		return 1;	
 	}
-	pixels[y*rows + x] = colour;
+	pixels[y*cols + x] = colour;
 	return 0;
 }
   

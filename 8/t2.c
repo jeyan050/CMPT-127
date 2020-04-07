@@ -56,18 +56,26 @@ void point_array_reset( point_array_t* pa ){
 // INt is 2 bits
 int point_array_append( point_array_t* pa, point_t* p ){
 	if (pa == NULL || pa->points == NULL || p == NULL){
+
 		return 1;	
+
 	}
-	if (pa->reserved == 0){
-		pa->points = realloc(pa->points, sizeof(point_t) * (pa->len+1));
+
+	if (pa->len == 0){
+		pa->len=1;
+		pa->points = realloc(pa->points,sizeof(point_t)*pa->len*2);
 		pa->reserved = 2;
+		pa->points[pa->len] = *p
+	} else {
+		pa->points[pa->len] = *p
+		pa->len = pa->len+1;
 	}
-	if (pa->reserved <= pa->len) {
-		pa->points = realloc(pa->points, sizeof(point_t) * (pa->reserved * 2));
-		pa->reserved = pa->reserved*2;
-	}
-	pa->points[pa->len] = *p;
-	pa->len++;
+
+	if (pa->reserved == pa->len )
+	{
+		pa->reserved = pa->reserved * 2;
+		pa->points = realloc(pa->points,sizeof(point_t)*pa->reserved);
+	}	
 	return 0;
 }
 

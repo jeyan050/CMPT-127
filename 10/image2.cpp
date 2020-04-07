@@ -59,7 +59,7 @@ int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colourp ){
      loaded by load(). Returns 0 on success, else a non-zero error
      code. */
 int Image::save( const char* filename ){
-	if (filename == NULL || pixels == NULL){
+	if (filename == NULL || pixels == NULL || colourp == NULL){
 		return 1;	
 	}
 	FILE *f = fopen(filename, "w");

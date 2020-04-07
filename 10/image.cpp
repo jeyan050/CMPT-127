@@ -64,7 +64,7 @@ int Image::set_pixel( unsigned int x, unsigned int y, uint8_t colour ){
   /* Gets the colour of the pixel at (x,y) and stores at the address pointed to 
      by colourp. Returns 0 on success, else a non-zero error code. */
 int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colourp ){
-	if (x >= cols || y >= rows){
+	if (x >= cols || y >= rows || colourp == NULL){
 		return 1;	
 	}
 	*colourp = pixels[y*cols+x];

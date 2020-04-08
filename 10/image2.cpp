@@ -100,7 +100,7 @@ int Image::load( const char* filename ){
 	// Using Previous Functions to size up the image
 	resize(lenCols, lenRows, 0);
 	
-	fread(pixels, sizeof(int), len, f);
+	fread(pixels, sizeof(uint8_t), len, f);
 	if (pixels == NULL){
 		return 1;	
 	}

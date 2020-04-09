@@ -59,22 +59,43 @@ int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colourp ){
      loaded by load(). Returns 0 on success, else a non-zero error
      code. */
 int Image::save( const char* filename ){
-    FILE* file = fopen(filename, "w");
-    if (pixels ==NULL || file == NULL) {
-      return 1;
+ 	if (filename == NULL){
+ 		cout << "filename wrong for saving." << endl;
+ 		return 1;
+ 	}
+ 	fstream fp;
+	fp.open(filename, fstream::out); /* Read-write. */
+ 	//FILE *fp = fopen(filename,"w");
+ 	if (!fp.is_open()){
+ 		cout << "Error Opening File for saving." << endl;
+ 		return 1;
+ 	}
+ 	if ((rows == 0 && cols > 0) || (rows > 0 && cols == 0)){
+		cout << "Error pixels for saving." << endl;
+		return 1;
+	}
+ 	if (cols == 0 && rows == 0){		
+ 		fp.close();
+ 		cout << "Saving empty File." << endl;
+ 		return 0;
+ 	}
+ 	//cout << "0" <<endl;
+ 	int i,j;
+ 	for (i=0;i<rows;i++){
+ 		j=0;
+ 		for(j=0;j<cols;j++){
+ 			fp<<(int)pixels[i*cols+j]<<" ";
+ 		}
+ 		fp << endl;
+ 	}
+ 	/*for (i=0;i<cols*rows;i++)
+    {
+        fprintf(fp," %d",(int)pixels[i]);
     }
-    int colsrows[2];
-    colsrows[0] = cols;
-    colsrows[1] = rows;
-    if (fwrite(colsrows, sizeof(int), 2, file) != 2) {
-      return 1;
-    }
-    const size_t imglen = cols*rows;
-    if (fwrite(pixels, sizeof(int), imglen, file) != imglen) {
-      return 1;
-    }
-    fclose(file);
-    return 0;		
+    fprintf(fp, "%d", cols );
+    fprintf(fp, "%d", rows );*/
+    fp.close();
+ 	return 0; 	
 }
 
   /* Load the an image from the file filename, replacing the current

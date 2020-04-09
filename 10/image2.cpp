@@ -67,9 +67,11 @@ int Image::save( const char* filename ){
       return 1;
     }
 
-	// Write into f
-	if (cols == 0 || rows == 0){
-		return 1;	
+	if (cols == 0 && rows == 0){
+		return 0;	
+	}
+	if ((rows == 0 && cols > 0) || (rows > 0 && cols == 0)){
+		return 1;
 	}
 	// Write into f
 	fwrite(&cols, sizeof(int), 1, f);

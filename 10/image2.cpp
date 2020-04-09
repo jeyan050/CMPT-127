@@ -59,27 +59,22 @@ int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colourp ){
      loaded by load(). Returns 0 on success, else a non-zero error
      code. */
 int Image::save( const char* filename ){
-	if (filename == NULL || pixels == NULL){
-		return 1;	
-	}
-	FILE *f = fopen(filename, "w");
-	if (f==NULL) {
+    FILE* file = fopen(filename, "w");
+    if (pixels ==NULL || file == NULL) {
       return 1;
     }
-
-	if (cols == 0 && rows == 0){
-    fclose(f);
-		return 0;	
-	}
-	if ((rows == 0 && cols > 0) || (rows > 0 && cols == 0)){
-		return 1;
-	}
-	// Write into f
-	fwrite(&cols, sizeof(int), 1, f);
-	fwrite(&rows, sizeof(int), 1, f);
-	fwrite(pixels, sizeof(uint8_t), 1, f);
-	fclose(f);
-	return 0;		
+    int colsrows[2];
+    colsrows[0] = cols;
+    colsrows[1] = rows;
+    if (fwrite(colsrows, sizeof(int), 2, file) != 2) {
+      return 1;
+    }
+    const size_t imglen = cols*rows;
+    if (fwrite(pixels, sizeof(int), imglen, file) != imglen) {
+      return 1;
+    }
+    fclose(file);
+    return 0;		
 }
 
   /* Load the an image from the file filename, replacing the current

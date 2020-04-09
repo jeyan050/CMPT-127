@@ -63,7 +63,14 @@ int Image::save( const char* filename ){
 		return 1;	
 	}
 	FILE *f = fopen(filename, "w");
-	
+	if (f==NULL) {
+      return 1;
+    }
+
+	// Write into f
+	if (cols == 0 || rows == 0){
+		return 1;	
+	}
 	// Write into f
 	fwrite(&cols, sizeof(int), 1, f);
 	fwrite(&rows, sizeof(int), 1, f);

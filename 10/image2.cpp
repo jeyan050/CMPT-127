@@ -82,6 +82,9 @@ int Image::load( const char* filename ){
 
     unsigned int colsrows[2];
     FILE* f = fopen(filename, "r");
+    if (f==NULL) {
+      return 1;
+    }
     if (fread(colsrows, sizeof(unsigned int), 2, f) != 2) {
       cols = 0;
       rows = 0;

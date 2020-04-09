@@ -91,23 +91,25 @@ intarr_t* intarr_copy( const intarr_t* ia ){
 // for all valid i, then return INTARR_OK. Works in-place: contents of
 // ia are sorted on return. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_sort( intarr_t* ia ){
-  if(ia == NULL){
-		return INTARR_BADARRAY;	
+  if(ia==0){
+		return INTARR_BADARRAY;
 	}
-	int min, switchpos, tmp;
-	for (int i = 0; i < ia->len; i++){
-		min = ia->data[i];
-		for (int a = i; a < ia->len; a++){
-			if (ia->data[a] < min){
-				min = ia->data[a];	
-				switchpos = a;	
-			}		
+	//based off selection sort, well i guess it is selection sort.
+	int x=0;
+	int y=0;
+	int testvalue=0;
+	for(x=1;x<ia->len;x++){
+		y=x-1;
+		testvalue = ia->data[x];
+		while(y>=0 && testvalue<(ia->data[y])){
+			ia->data[y+1]=ia->data[y];
+			y--;
 		}
-		tmp = ia->data[i];
-		ia->data[i] = min;
-		ia->data[switchpos] = tmp;
+		ia->data[y+1]=testvalue;
+		
 	}
 	return INTARR_OK;
+
 }
 
 /* LAB 5 TASK 5 */
@@ -216,21 +218,21 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newlen ){
 // occurs, i.e. ia is null, 'first' or 'last' are out of bounds, 
 // 'last' < 'first', or memory allocation fails, return a null pointer.
 intarr_t* intarr_copy_subarray( intarr_t* ia, unsigned int first, unsigned int last ){
-  if (ia == NULL || first > ia->len || last > ia->len || last < first){
-		return NULL;	
+	if(ia==0 || first<0 || last > (ia-> len)-1 || last<first){
+		return NULL;
 	}
-	int copyPos = 0;
-  int newLen;
-	intarr_t *copy = malloc(sizeof(intarr_t));
-	if (copy != NULL && first <= last){
-		newLen = last-first+1;
-		copy->len = newLen;
-		copy->data = malloc(sizeof(int)*newLen);
-		for (int i = first; i <= last; i++){
-			copy->data[copyPos] = ia->data[i];
-			copyPos++;
+	intarr_t* newMe = malloc(sizeof(intarr_t));
+	newMe->data= malloc((last-first+1)*sizeof(int));
+	int x = 0;
+	int y=0;
+	for(x=0;x<ia->len;x++){
+		if(x>=first && x<=last){
+			//printf("im walking over here\n");
+			newMe->data[y]=ia->data[x];
+			y++;
 		}
-		return copy;
 	}
-	return NULL;
+	newMe->len=(last-first+1);
+	
+	return newMe;
 }

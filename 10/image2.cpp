@@ -60,9 +60,13 @@ int Image::get_pixel( unsigned int x, unsigned int y, uint8_t* colourp ){
      code. */
 int Image::save( const char* filename ){
     FILE* file = fopen(filename, "w");
-    if (pixels ==NULL || file == NULL) {
+    if (file == NULL) {
       return 1;
     }
+  	if(pixels == NULL){
+	    fclose(file);
+  	  return 0;	
+  	}
     int colsrows[2];
     colsrows[0] = cols;
     colsrows[1] = rows;

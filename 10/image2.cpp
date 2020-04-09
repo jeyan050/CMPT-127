@@ -68,6 +68,7 @@ int Image::save( const char* filename ){
     }
 
 	if (cols == 0 && rows == 0){
+    fclose(f);
 		return 0;	
 	}
 	if ((rows == 0 && cols > 0) || (rows > 0 && cols == 0)){

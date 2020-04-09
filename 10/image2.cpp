@@ -79,33 +79,23 @@ int Image::load( const char* filename ){
 	if (filename == NULL){
 		return 1;	
 	}
-	FILE *f = fopen(filename, "r");
-	
-	int len;
-	// Check if its empty
-	if (fread(&len, sizeof(int), 1, f) == 0){
-		cols = 0;
-		rows = 0;
-		pixels = NULL;
-		fclose(f);
-		return 0;
-	}
 
-	// Stores Rols and Cols
-	int lenRows;
-	int lenCols;
-	fread(&lenRows, sizeof(int), 1, f);
-	fread(&lenCols, sizeof(int), 1, f);
-	
-	// Using Previous Functions to size up the image
-	resize(lenCols, lenRows, 0);
-	
-	fread(pixels, sizeof(uint8_t), len, f);
-	if (pixels == NULL){
-		return 1;	
-	}
-	fclose(f);
-	return 0;
+    unsigned int colsrows[2];
+    FILE* f = fopen(filename, "r");
+    if (fread(colsrows, sizeof(unsigned int), 2, f) != 2) {
+      cols = 0;
+      rows = 0;
+      pixels = NULL;
+      return 0;
+    }
+    cols = colsrows[0];
+    rows = colsrows[1];
+    pixels = new uint8_t[cols*rows];
+    if (fread(pixels, sizeof(uint8_t), cols*rows, f) != cols*rows) {
+      return 1;
+    }
+    fclose(f);
+    return 0;
 }
 
 

@@ -105,7 +105,9 @@ int Image::load( const char* filename ){
 		return 1;	
 	}
 	FILE *f = fopen(filename, "r");
-	
+	if(f==NULL){
+        return 1;
+  }
 	int len;
 	// Check if its empty
 	if (fread(&len, sizeof(int), 1, f) == 0){
